@@ -79,7 +79,7 @@ static getusers(req, res, next ){
                         occupation: req.body.occupation,
                         expertise: req.body.expertise
                       };
-                    jwt.sign({user}, 'secretKey', (err, token) => {
+                    // jwt.sign({user}, 'secretKey', (err, token) => {
                                 
                         res.json({
                             status: 200,
@@ -88,7 +88,7 @@ static getusers(req, res, next ){
                             }
                             
                         });
-                    });
+                    // });
                 };
 
         // getting specific user
@@ -118,24 +118,37 @@ static userlogin (req, res){
                 token: token
             }
 
-        })
+         })
       
-   }
+      }
         else {
             res.json({
                 message:"You are not registed!"
             })
-        }
+           }
      
-        } 
+        }
+
     
     static getMentors (req, res){
         res.json({
             status: 200,
-            data: data
+            data: mentors
             })
            }
           
+
+    static specificMentor (req, res, next ){
+              const mentor =  mentors.find(mentor => mentor.id === parseInt(req.params.id,10))
+                if(!mentor) return res.status(404).json({
+                    status : 404,
+                    message: "mentor with the given ID not found!",
+                    
+                }) 
+                res.json({
+                    data:mentor 
+                });
+                };        
             
      } 
                
