@@ -31,7 +31,7 @@ export const users= [
         email : "sam@gmail.com",
         password :"zxcvbnm123456",
         adress: "uganda kampala",
-        biography: " printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+        biography: " printing and typesetting industry.",
         occupation : "lecturor of web development",
         expertise: "BackEnd developer"
     },
@@ -42,9 +42,10 @@ export const users= [
      email : "kim5@gmail.com",
      password :"qwertyuiop",
      adress: "kenya nailobi",
-     biography: " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+     biography: " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
      occupation : "freelancer",
      expertise: "BackEnd developer"
+     
  }
 
  ]

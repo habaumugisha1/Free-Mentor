@@ -1,3 +1,5 @@
+import { users, mentors } from '../models/data';
+
 import jwt from 'jsonwebtoken';
 export default (req, res, next)=>{
   const bearerHeader = req.headers['authorization'];
@@ -14,4 +16,3 @@ export default (req, res, next)=>{
   })
 }
   }
-
