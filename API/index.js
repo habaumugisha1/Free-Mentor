@@ -5,9 +5,11 @@ const app = express();
 app.use(json());
 
 import userRouter from './routes/userRoutes'
+import sessionRouter from './routes/sessionRoutes'
 
 
 app.use('/api/v1', userRouter);
+app.use('/api/v1', sessionRouter);
 
 
 

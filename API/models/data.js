@@ -49,6 +49,23 @@ export const users= [
  }
 
  ]
- export const sessions = [];
+ export const sessions = [
+     {
+        "sessionId": "1",
+        "mentorId": "1",
+        "menteeId":"1",
+        "menteeEmail":"sam@gmail.com",
+        "questions":"the question is about how to install node js?",
+        "status":"pending"
+     },
+     {
+   "sessionId": "2",
+   "mentorId": "2",
+   "menteeId":"2",
+   "menteeEmail":"kim5@gmail.com",
+   "questions":"the question is how to test node js? by mocha",
+   "status":"pending"
+     }
+ ];
 
  export const reviews = [];
