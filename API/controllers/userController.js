@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
-//import { user } from '../helpers/userhelper';
 import { users, mentors } from '../models/data';
 
 
