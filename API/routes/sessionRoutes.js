@@ -8,6 +8,7 @@ let router = express.Router();
 
 
 router.post('/sessions',sessionMiddleware, Sessions.requestSession )
+router.patch('/sessions/:sessionId/:accept',sessionMiddleware, Sessions.acceptSession)
 
 
 export default router;
