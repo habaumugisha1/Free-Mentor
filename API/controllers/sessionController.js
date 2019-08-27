@@ -22,5 +22,29 @@ export default class Sessions {
                             
                         })
                         };
+ // mentor accepting menotorship request session
+    static acceptSession (req, res, next) {
+        const session = sessions.find(s => s.sessionId === parseInt(req.params.sessionId,10))
+       
+        if(!session) return res.status(404).json({
+            
+                status: 404,
+                message: 'session with ID you type is not found',
+                })
+                 
+    res.status(200).json({ 
+        status: 200,
+        data: {
+            sessionId: req.params.sessionId,
+            mentorId : req.body.mentorId,
+            menteeId : req.userInfo.user.id,
+            questions: req.body.questions,
+            menteeEmail: req.userInfo.user.email,
+            status: "Accepted",
+        }
+        })
+            
+        
+    }
                      
      } 
