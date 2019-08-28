@@ -6,10 +6,12 @@ app.use(json());
 
 import userRouter from './routes/userRoutes'
 import sessionRouter from './routes/sessionRoutes'
+import reviewRouter from './routes/sessionReviewRoutes'
 
 
 app.use('/api/v1', userRouter);
 app.use('/api/v1', sessionRouter);
+app.use('/api/v1', reviewRouter)
 
 
 
