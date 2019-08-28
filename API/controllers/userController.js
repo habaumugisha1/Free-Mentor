@@ -143,7 +143,7 @@ static userlogin (req, res){
          
                   })
                
-               }}) 
+
             } else{
                      res.json({
                          message:"You are not registed!"
@@ -174,7 +174,9 @@ static userlogin (req, res){
                 res.json({
                     data:mentor 
                 });
-                };        
+                }; 
+                
+                
             
      } 
                

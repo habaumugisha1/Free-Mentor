@@ -66,4 +66,12 @@ export default class Sessions {
           }
         })
       }
+
+
+      // get sessions
+      static getSession(req, res) {
+        res.status(200).json({
+          sessions
+        })
+      }
     } 
