@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { users, mentors } from '../models/data';
 
@@ -19,11 +20,22 @@ export default class Users {
     };
                
     static userSignUp(req, res, next) {
-    
+      const user = users.find(u =>u.email === req.body.email)
+      bcrypt.hash(req.body.password,10, (err,hash) => {
+          if(err) {
+          return res.status(500).json({
+              error: err
+          })
+      } else {
+        if (user)
+        // 422 is unprocessable entity
+        res.status(422).json({
+            message:'Email already registed'
+        }) 
                 const schema = {
+                    email : Joi.string().min(10).email().required(),
                     firstName : Joi.string().min(5).required(),
                     lastName : Joi.string().min(7).required(),
-                    email : Joi.string().min(10).email().required(),
                     password : Joi.string().regex(/^[a-zA-Z0-9]{6,16}$/),
                     adress : Joi.string().required(),
                     biography : Joi.string().max(150).required(),
@@ -37,10 +49,10 @@ export default class Users {
                 } else {
                         const user = {
                           id: users.length + 1,
-                          name : req.body.name,
-                          userName : req.body.userName,
                           email : req.body.email,
-                          password: req.body.password,
+                          firstName : req.body.name,
+                          lastName : req.body.userName,
+                          password: hash,
                           adress: req.body.adress,
                           biography: req.body.biography,
                           occupation: req.body.occupation,
@@ -54,23 +66,26 @@ export default class Users {
                                 message: 'User created sucessful!',
                                 data : {
                                     token,
-                                    message: 'Good user created sucessful!!!'
+                                    message: 'Good! user created sucessful!!!'
                                 }
                                 
                             });
                         });
                    } 
                 //}
-           // }
+           //}
                 
         };
+      })
+     }
+    
                  
 
 static getusers(req, res, next ){
                     const user = {
                         id: users.length + 1,
-                        name : req.body.name,
-                        userName : req.body.userName,
+                        firstName : req.body.name,
+                        lastName : req.body.userName,
                         email : req.body.email,
                         password: req.body.password,
                         adress: req.body.adress,
@@ -106,25 +121,37 @@ static specificuser (req, res, next ){
         // user should be able to sign in
 static userlogin (req, res){
     
- const user = users.find(user => user.email === req.body.email && user.password === req.body.password )
-       
- if(user){
-   const token = jwt.sign({user},'privateKey',(token))  
-        return res.status(200).json({
-            status: 200,
-            message: 'User is successfully logged in',
-            data: {
-                token: token
-            }
-
-         })
+ const user = users.find(user => user.email === req.body.email)
+  
       
-      }
-        else {
-            res.json({
-                message:"You are not registed!"
-            })
-           }
+        if(user){
+            bcrypt.compare(req.body.password, user.password, (err, result) => {
+                if(err){
+                    res.json({
+                        message: 'password not mach'
+                    })
+                } 
+                 
+                if(result){
+            const token = jwt.sign({user},'privateKey',(token))  
+                 return res.status(200).json({
+                     status: 200,
+                     message: 'User is successfully logged in',
+                     data: {
+                         token: token
+                     }
+         
+                  })
+               
+               }}) 
+            } else{
+                     res.json({
+                         message:"You are not registed!"
+                     })
+                    
+                    }
+                
+ 
      
         }
 
