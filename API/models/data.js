@@ -19,7 +19,16 @@ export const users= [
      biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
      occupation : "freelancer",
      expertise: "BackEnd developer"
- }
+ },
+ {
+ id: 3,
+ email: "kamana186@gmail.com",
+ password: "$2a$10$7m78Q.YZoJ0EDyO9M4VuJ.JafksgV5mSfAmj31YPIqXmTw/chA/wu",
+ adress: "Rwanda kigali",
+ biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+ occupation: "freelancer",
+ expertise: "BackEnd developer"
+}
 
  ];
 
