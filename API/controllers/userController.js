@@ -143,8 +143,7 @@ static userlogin (req, res){
          
                   })
                
-               }
-            }) 
+
             } else{
                      res.json({
                          message:"You are not registed!"
