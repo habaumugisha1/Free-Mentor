@@ -9,6 +9,7 @@ let router = express.Router();
 
 
 router.post('/sessions/:sessionId/review', sessionMiddleware, ReviewSessions.createReview)
+router.delete('/sessions/:sessionId/review',sessionMiddleware, ReviewSessions.deleteReview)
 
 
 
