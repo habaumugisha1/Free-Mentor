@@ -11,9 +11,9 @@ const experiance = document.getElementById("expId");
 const form = document.getElementById("formId");
 
 
-  if((firstName =="") || (lastName =="") || (email.value =="") || (password.value =="") || (text.value =="") || (occupation.value =="") || (experiance.value =="")){
- alert("please fill all field, No black fields are allowed!!!!! ")
- return
+  if((firstName ==="") || (lastName ==="") || (email.value ==="") || (password.value ==="") || (text.value === "") || (occupation.value ==="") || (experiance.value ==="")){
+ alert('please fill all field, No black fields are allowed!!!!! ')
+ return false
   } else{
     localStorage.setItem('firstName',firstName.value);
     localStorage.setItem('lastName',lastName.value);
