@@ -7,6 +7,7 @@ export const users= [
         adress: "Rwanda kigali",
         biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
         occupation : "freelancer",
+        role: "mentee",
         expertise: "BackEnd developer"
     },
     {
@@ -18,23 +19,10 @@ export const users= [
      adress: "Rwanda kigali",
      biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
      occupation : "freelancer",
+     role:"mentee",
      expertise: "BackEnd developer"
- },
- {
- id: 3,
- email: "kamana186@gmail.com",
- password: "$2a$10$7m78Q.YZoJ0EDyO9M4VuJ.JafksgV5mSfAmj31YPIqXmTw/chA/wu",
- adress: "Rwanda kigali",
- biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
- occupation: "freelancer",
- expertise: "BackEnd developer"
-}
-
- ];
-
- export const  mentors = [
-      
-    {   id : 1,
+ },   
+{   id : 3,
         firstName : "samuel",
         lastName : "samkali",
         email : "sam@gmail.com",
@@ -42,29 +30,63 @@ export const users= [
         adress: "uganda kampala",
         biography: " printing and typesetting industry.",
         occupation : "lecturor of web development",
+        role:"mentor",
         expertise: "BackEnd developer"
     },
     {
-        id: 2,
+        id: 4,
     firstName : "peter",
      lastName : "kim",
      email : "kim5@gmail.com",
-     password :"qwertyuiop",
+     password :"1234567890",
      adress: "kenya nailobi",
      biography: " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
      occupation : "freelancer",
+     role:"mentor",
      expertise: "BackEnd developer"
      
- }
-
+ },
+ {
+    id: 5,
+firstName : "jamus",
+ lastName : "kuku",
+ email : "jamus5@gmail.com",
+ password :"1234567890",
+ adress: "kenya nailobi",
+ biography: " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+ occupation : "freelancer",
+ role:"admin",
+ expertise: "BackEnd developer"
+ 
+},
+{
+    id: 6,
+    email: "kamana12@gmail.com",
+    password: "$2a$10$wp.Mpmu0inbdlzze8HBkVuHH2dy26t6TbWh7BLqMAA5SVWQxSHyIq",
+    adress: "Rwanda kigali",
+    biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    occupation: "freelancer",
+    role: "mentee",
+    expertise: "BackEnd developer"
+  },
+  {
+    id: 7,
+    email: "sibomana@gmail.com",
+    password: "$2a$10$eJXoxzvzUAA5V0eyvTc1IeailqDufIfCLwGn1p24x6sJaAOeXc3tK",
+    adress: "Rwanda kigali",
+    biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    occupation: "freelancer",
+    role: "mentor",
+    expertise: "BackEnd developer"
+  },
  ]
  export const sessions = [
      {
         sessionId: 1,
         mentorId: 1,
-        menteeId :1,
-        menteeEmail :"sam@gmail.com",
-        questions :"the question is about how to install node js?",
+        menteeId:1,
+        menteeEmail:"sam@gmail.com",
+        questions:"the question is about how to install node js?",
         status:"pending"
      },
      {
@@ -77,13 +99,4 @@ export const users= [
      }
  ];
 
- export const reviews = [  
-  {
-    sessionId:  1,
-    mentorId : 1,
-    menteeId : 1,
-    score: 3,
-    menteeFullName: "kamana emmanuel",
-    remark: "it is good to install node js"
-  }
- ];
+ export const reviews = [];
