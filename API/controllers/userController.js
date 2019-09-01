@@ -112,17 +112,7 @@ static specificuser (req, res ){
 static userlogin (req, res){
     
     const user = users.find(user => user.email === req.body.email)
-     
-         
-           if(user){
-               bcrypt.compare(req.body.password, user.password, (err, result) => {
-                   if(err){
-                       
-                       return res.json({
-                           message:"password not match!"
-                       })
-                   } 
-                    
+                      
                    if(result){
                const token = jwt.sign({user},'privateKey',(token))  
                     return res.status(200).json({

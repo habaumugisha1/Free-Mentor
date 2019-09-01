@@ -21,8 +21,7 @@ export const users= [
      occupation : "freelancer",
      role:"mentee",
      expertise: "BackEnd developer"
- },
-      
+ },   
 {   id : 3,
         firstName : "samuel",
         lastName : "samkali",
