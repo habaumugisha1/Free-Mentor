@@ -7,7 +7,8 @@ body{
     font-family: arial;
 }
 .container {
-  position: absolute;
+  position: relative;
+  display:flex;
   left: 0;
   top: 0;
   width: 100%;
@@ -31,14 +32,14 @@ body{
 }
 @media (min-width:200px){
     .container {
-        height: 580px;
+        height: 100vh;
     }
 }
 .nav {
   margin: 0;
   min-height: 40px;
   display: flex;
-  background-color: rgba(36, 28, 28,0.45);
+  background-color: rgba(132, 158, 243, 0.45);
   
 }
 .log {
@@ -78,7 +79,7 @@ ul {
     width: fit-content;
     background-color: rgba(7, 18, 122, 0.75);
 }
-@media only screen and (max-width:360px){
+@media only screen and (max-width:200px){
     .nav ul {
         height: 270px;
         width: 120px;
@@ -114,16 +115,7 @@ ul {
         margin-left:20px;
         max-width: 200px
     }
-    /* form input {
-        width: 80px;
-        margin-left: 50px;
-        border: none;
-        background-color: rgb(228, 228, 228);
-        height: 40px;
-        border-width: none;
-        text-align: center
     
-    } */
     .details {
         margin-top: 50px
     }
@@ -149,6 +141,22 @@ ul {
         font-size: 13px;
     }
 }
+#me {
+    background-color: rgb(29, 92, 192);
+    height: 30px;
+    border-radius: 10px;
+    width: 90px;
+    padding:20px;
+    border: none;
+    /* margin-left: -130px */
+}
+#me a{
+    font-size: 15px;
+    margin-top: 10px;
+     color:rgb(228, 218, 218);
+    
+    /* margin-left: -130px */
+}
 .loging a {
     text-decoration : none;
     color : gray
@@ -161,17 +169,56 @@ ul {
     height: fit-content;
     background-color: rgb(37, 36, 36)
 }
+.formimg {
+    background-image: url('../images/mentor8.jpg');
+    width: 350px;
+    padding: 30px;
+    height: 200px;
+    color:rgb(237, 118, 241);
+    margin-top:150px;
+    background-size: cover;
+    margin-left: 30px;
+}
+@media screen and (min-width:200px){
+    .formimg {
+        margin-top: 10px
+    }
+}
+
+@media (max-width:768px){
+    .formimg {
+        width: 300px;
+        padding: 30px;
+        height: 200px;
+        color:rgb(237, 118, 241);
+        margin-top:20px;
+        background-size: cover;
+        margin-left: 30px;
+    }
+    }
+    @media screen and (min-width:768px){
+        .formimg {
+            width: 350px;
+            padding: 30px;
+            height: 250px;
+            color:rgb(237, 118, 241);
+            margin-top:200px;
+            background-size: cover;
+            margin-left: 70px;
+        }
+        }
+
 .outer {
     position: absolute;
     left: 0;
     margin-top: 0px;
     width: 100%;
-    min-height: 100vh;
+    min-height: auto;
     background: rgba(0,0,0,0.3);
 }
 @media (min-width:200px){
     .outer {
-        height: 580px;
+        height: 100vh;
         background-size: cover 
     }
 }
@@ -180,19 +227,20 @@ li {
 }
 .details {
 position: absolute;
+/* display: flexC; */
 transform: translate(-50%, -50%);
 text-align: center;
-color: white;
+color:  rgba(207, 75, 224, 0.75);
 font-size: 20px;
 left: 50%;
-top: 50%;
+top: 40%;
 }
 @media all and (min-width:200px){
     .details {
-    margin-top: 195px;
-    height: 100%;
+    margin-top: 280px;
+    height: 100vh;
     margin-bottom: 100px;
-    font-size:18px;
+    font-size: 15px;
     }
 }
 @media (min-width:768px){
@@ -200,10 +248,10 @@ top: 50%;
         position: absolute;
         transform: translate(-50%, -50%);
         text-align: center;
-        color: white;
+        color: rgba(230, 72, 132, 0.75);
         font-size: 23px;
-        left: 50%;
-        margin-top: 150px;
+        left: 47%;
+        margin-top: 180px;
     }
 }
 .getstart {
@@ -212,7 +260,7 @@ padding: 5px;
 text-align: center;
 cursor: pointer;
 left: 50%;
-top:83%;
+margin-top:auto;
 border-radius: 20px;
 height: 60px;
 width: 150px;
@@ -227,7 +275,7 @@ border: none;
 }
 @media (min-width:200px){
     .getstart{
-        margin-top:30px;
+        margin-top:60%;
         margin-bottom:0px;
         height: 40px;
         width:100px;
@@ -240,7 +288,7 @@ padding: 5px;
 text-align: center;
 cursor: pointer;
 left: 50%;
-top:75%;
+margin-top:28%;
 border-radius: 20px;
 height: 60px;
 width: 150px;
@@ -250,15 +298,25 @@ border: none;
     }
 }
 .already {
-    float: right;
-    margin-right: 30px;
+    text-align: center;
+    justify-content: center;
     margin-top: 30px;
-    width: 300px;
+    
   
 }
-.already a {
+.already button {
+    text-decoration: none;
+    /* border: 1 solid gray; */
+    height: 30px;
+    border-radius: 10px;
+   
+    
+}
+.already button a {
     text-decoration: none;
     border: 1 solid gray;
+    text-decoration: none;
+    color:white;
     height: 30px;
     border-radius: 10px;
    
@@ -283,7 +341,7 @@ border: none;
 }
 
 .lef {
-  float: right;
+  justify-content: center;
   /* background-color: rgba(181, 247, 225, 0.45); */
   margin-left: 100px;
   margin-bottom: 30px;
@@ -291,34 +349,33 @@ border: none;
   box-shadow: 2px 3px 0 4px gray; 
   margin-top: 50px;
   border-radius: 10px;
-  width: 600px;
-  min-height: 600px;
+  /* width: 300px; */
+  min-height: 400px;
   padding: 20px;
 } 
 @media all and (min-width:200px){
     .lef {
         float:left;
-        margin-left: 15px;
-        width: 90%;
+        /* margin-left: 50px; */
+        width: 70%;
         margin-right: 20px 
     }
 }
 @media all and (min-width:768px){
     .lef {
         
-        margin-left: 20%;
-        width: 60%;
-        margin-right: 50px;
+        margin-left: 30%;
+        width: 40%;
+        /* margin-right: 50px; */
         font-size: 30px 
     }
 }
 
  form input {
-    width: 400px;
+    width: 300px;
+    height: 30px;
     border: none;
     border: 1px solid gray;
-    /* background-color: rgb(228, 228, 228); */
-    height: 40px;
     font-size: 20px;
     border-radius: 10px;
     border-width: none;
@@ -327,17 +384,33 @@ border: none;
 }
 @media all and (min-width:200px){
     form input{
-        width: 90%;
+        width: 70%;
         margin-left: 10px;
         font-size: 15px
+    }
+}
+
+@media all and (min-width:768px){
+    form input{
+        width: 350px;
+    height: 30px;
+    border: none;
+    border: 1px solid gray;
+    font-size: 15px;
+    border-radius: 10px;
+    border-width: none;
+    text-align: center
     }
 }
 form textarea {
     
     border: none;
+    width: 350px;
+    text-align: center;
     border: 1px solid gray;
+    /* border: 1px solid gray; */
     background-color: rgb(228, 228, 228);
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px;
     border-radius: 10px;
     border-width: none;
@@ -346,15 +419,31 @@ form textarea {
 }
 @media all and (min-width:200px){
     form textarea {
-        width: 90%;
+        width: 70%;
         margin-left: 10px;
         font-size: 15px
     }
 }
+@media all and (min-width:768px){
+    form textarea {
+        border: none;
+        width: 350px;
+        text-align: center;
+        border: 1px solid gray;
+        /* border: 1px solid gray; */
+        background-color: rgb(228, 228, 228);
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        border-width: none;
+    }
+}
 form button {
-   max-width: 400px;
-    height: 40px;
-    font-size: 30px;
+   max-width: 120px;
+    height: 35px;
+    font-size: 22px;
+    margin-left: 80px;
+    float: center;
     border: none;
     color: white;
     background-color: rgba(7, 18, 122, 0.75);
@@ -380,18 +469,18 @@ form button {
     min-height: 200px;
     border: 1px solid grey;
     border-radius: 10px;
-    width: 500px;
+    width: 450px;
     margin-bottom: 30px;
     padding: 30px;
     margin-top: 100px;
-    margin-left: 250px;
+    margin-left: 50%;
     background-color: lightblue;
 
 }
 @media (min-width:200px){
     .logcontent {
         width: 80%;
-        margin-left: 10px;
+        margin-left: 40px;
         font-size: 15px
     }
     .logcontent .loging {
@@ -402,6 +491,12 @@ form button {
     .logcontent .loging input {
        height: 25px;
        width: 100%
+    }
+    .logcontent img {
+        margin-left:35%;
+        margin-top: -100px;
+        border-radius: 50%;
+        background: white;
     }
     .logcontent .loging button {
         height: 25px;
@@ -415,11 +510,11 @@ form button {
     min-height: 200px;
     border: 1px solid grey;
     border-radius: 10px;
-    width: 500px;
+    width: 400px;
     margin-bottom: 30px;
     padding: 30px;
     margin-top: 100px;
-    margin-left: 250px;
+    margin-left: 30%;
     background-color: lightblue;
     }
     .logcontent .loging input {
@@ -428,13 +523,38 @@ form button {
      }
      .logcontent img {
          margin-left:38%;
-         margin-top: -30px;
+         margin-top: -100px;
          border-radius: 50%;
          background: white;
      }
 
 }
-    
+ 
+.containerform{
+   /* float: right; */
+   margin-left: 20%;
+   margin-top: -310px;
+   width: 1000px
+
+}
+@media screen and (min-width:200px){
+    .containerform{
+        /* float: right; */
+        margin-left: auto;
+        margin-top: 20px;
+        width: 97%
+     
+     }
+}
+@media screen and (min-width:768px){
+    .containerform{
+        /* float: right; */
+        margin-left: 23%;
+        margin-top: -360px;
+        width: 800px
+     
+     }
+}
 .log a {
     text-decoration: none;
     color:white
@@ -459,9 +579,11 @@ form button {
 
 .footer1 {
     padding:20px;
-    
+    left: 0;
+    bottom: 0;
+    width: 100%;
     float: bottom;
-     margin-top: 580px; 
+    /* margin-top: 700px;  */
     color:white;
     text-align: center;
     justify-content: center;
@@ -525,10 +647,11 @@ form button {
     margin-left: 300px
 }
 .contact-main {
-    margin-left: 100px;
+
+    /* margin-left: 100px; */
     margin-top: 40px;
     display: grid;
-    width: 900px;
+    width: 500px;
     grid-template-columns: 1fr 2fr;
     margin-bottom: 50px;
     border: 2px solid rgba(97, 95, 95, 0.15);
@@ -546,12 +669,12 @@ form button {
 
     }
 }
-@media (min-width:768px){
-    .contact-mainl{
-    margin-left: 100px;
+@media screen and (min-width:768px){
+    .contact-main{
+    margin-left: 20%;
     margin-top: 40px;
     display: grid;
-    width: 900px;
+    width: 700px;
     grid-template-columns: 1fr 2fr;
     margin-bottom: 50px;
     border: 2px solid rgba(97, 95, 95, 0.15);
@@ -592,10 +715,20 @@ form button {
 @media screen and (min-width:200px){
     .typing{
         margin-top:20px;
-        float:left;
-        width: 98%;
-        margin-left: 15px;
+        width: 100%;
+        margin-left: 0px;
 
+    }
+    .myform input{
+        width:98%;
+        margin-left:2px
+    }
+    .myform textArea {
+        width:98%;
+        margin-left:2px
+    }
+    .myform button {
+        margin-left: 10px
     }
 }
 
@@ -603,12 +736,30 @@ form button {
     .typing{
         border: 1px solid rgba(97, 95, 95, 0.15);
         border-radius: 20px;
+        width:400px;
         padding: 20px;
          margin-left: 40px
 
     }
+    
 }
-
+.about{
+    width:600px;
+}
+@media screen and (min-width:200px){
+    .about{
+      width: auto;
+      margin-left:auto
+    }
+}
+@media screen and (min-width:768px){
+    .about{
+       width: 600px; 
+    }
+}
+.myform button {
+    width: 100px;
+}
  #button {
    min-width: 300px;
     margin-left: 10px;
@@ -624,7 +775,7 @@ form button {
 @media only screen and (min-width: 200px) {
     #sidebar {
         float: none;
-        width: 400px
+        width: 400pxmargin-left: 50px;
     }
     #sidebar ul li a {
         text-align: center;
@@ -816,6 +967,20 @@ section {
     /* border: 1px solid gray; */
     border-radius: 10px;
     padding: 20px;
+}
+section:hover{
+    -ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1); 
+    transform: scale(1.1); 
+    background-color: rgb(218, 243, 165);
+
+}
+section img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 35%
 }
 section button {
     background-color: rgb(92, 92, 243);

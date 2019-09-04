@@ -153,13 +153,23 @@ text-align: center;
     grid-row-gap: 30px;
     grid-column-gap: 10px;
 }
-/* @media (min-width:200px){
-    .scop .usermain {
-        margin-top: 300px;
-        display: grid;
-        grid-template-columns: 1fr
-    }
-} */
+
+section:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1); 
+
+    border-radius: 10px;
+    background-color: rgb(220, 240, 178);
+    
+}
+section img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 37%
+}
 .scop .usermain section {
     padding: 20px;
 }
