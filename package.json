@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js ",
-    "test": "nyc mocha --exit --require @babel/register tests/",
+    "start": "nodemon --exec babel-node ./API/index.js ",
+    "test": "nyc mocha --exit --require @babel/register ./API/tests/",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
-   
   },
   "author": "ami",
   "license": "MIT",
