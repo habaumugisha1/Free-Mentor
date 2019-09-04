@@ -87,40 +87,6 @@ export default class Users {
     // });
   }
 
-  // change user to mentor
-  static specificuser(req, res) {
-    const user = users.find((user) => user.id === parseInt(req.params.id, 10) && (user.role === 'mentee'));
-    const token = jwt.sign({ user }, 'privateKey', (token));
-    if (!user) {
-      return res.status(404).json({
-        status: 404,
-        message: `User with the given ID = ${req.params.id} not found!`,
-
-      });
-    }
-    return res.status(200).json({
-      data: token,
-      message: 'User account changed to mentor',
-    });
-  }
-
-
-  // user should be able to sign in
-  static userlogin(req, res) {
-    const user = users.find((user) => user.email === req.body.email);
-
-
-    if (user) {
-      bcrypt.compare(req.body.password, user.password, (err, result) => {
-        if (err) {
-          return res.json({
-            message: 'password not match!',
-          });
-        }
-
-        if (result) {
-          const token = jwt.sign({ user }, 'privateKey', (token));
-          return res.status(200).json({
             status: 200,
             message: 'User is successfully logged in',
             data: {
