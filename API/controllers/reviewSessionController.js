@@ -1,14 +1,21 @@
+import sessionMiddleware from '../middleware/sessionMiddleware'
 import jwt from 'jsonwebtoken';
 import { users, mentors, sessions, reviews } from '../models/data';
 
     
 export default class ReviewSessions {
     
-    static createReview(req, res,) {
-        const session = sessions.find(s => s.sessionId === parseInt(req.params.sessionId,10))
+  static createReview(req, res,) {
+        const session = sessions.find(s => s.sessionId === parseInt(req.params.sessionId,10) && (req.userInfo.user.role === "mentor"))
+        if(req.userInfo.role !== "mentor") 
+        //unauthorized status code
+        return res.status(401).json({
+          message: 'your are not allowed only mentor is allowed to create review'
+        })
+
         if(!session) return res.status(404).json({
           status: 404,
-            message:'session with ID you passed is not found!'   
+            message:`session with ID ${req.params.sessionId} you passed is not found!`   
          })
          if(session){
          const review = {
@@ -22,7 +29,7 @@ export default class ReviewSessions {
                           
                         };
                     reviews.push(review);
-                        res.json({
+                        res.status(200).json({
                            status :200,
                             data: review
                             
@@ -31,8 +38,14 @@ export default class ReviewSessions {
     
           };
 
-        static deleteReview (req,res){
-          const session = sessions.find(r => r.sessionId === parseInt(req.params.sessionId,10))
+  static deleteReview (req,res){
+          const session = sessions.find(r => r.sessionId === parseInt(req.params.sessionId,10) && (req.userInfo.user.role === "admin"))
+          if(req.userInfo.role !== "admin")
+          //unauthorized status code 
+           return res.status(401).json({
+          message: 'your are not allowed only admin is allowed to delete this review'
+        })
+          
           if(!session) return res.status(404).json({
             status: 404,
               message:`session with ID ${req.params.sessionId} you passed is not found`   

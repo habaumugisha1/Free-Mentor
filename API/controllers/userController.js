@@ -1,6 +1,6 @@
 import Joi from 'joi';
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs'
 import { users, mentors } from '../models/data';
 
 
@@ -13,14 +13,14 @@ export default class Users {
 
     static homeView (req, res) {
         console.log(req.body);
-        res.json({
-            status :201,
+        res.status(200).json({
+            status :200,
             message : "Welcome to Free Mentors"
         });
     };
                
-    static userSignUp(req, res, next) {
-      const user = users.find(u =>u.email === req.body.email)
+    static userSignUp(req, res) {
+        const user = users.find(u =>u.email === req.body.email)
       bcrypt.hash(req.body.password,10, (err,hash) => {
           if(err) {
           return res.status(500).json({
@@ -28,8 +28,8 @@ export default class Users {
           })
       } else {
         if (user)
-        // 422 is unprocessable entity
-        res.status(422).json({
+        // 409 is conflict with existing email
+        res.status(409).json({
             message:'Email already registed'
         }) 
                 const schema = {
@@ -40,6 +40,7 @@ export default class Users {
                     adress : Joi.string().required(),
                     biography : Joi.string().max(150).required(),
                     occupation : Joi.string().required(),
+                    role:Joi.string(),
                     expertise : Joi.string().max(50).required()
                 };
                 // validation user input
@@ -56,13 +57,16 @@ export default class Users {
                           adress: req.body.adress,
                           biography: req.body.biography,
                           occupation: req.body.occupation,
+                          role: req.body.role,
                           expertise: req.body.expertise
                         };
+                    
+                    // console.log(user.req.body)
                         users.push(user);
-                        jwt.sign({user}, 'secretKey', (err, token) => {
+                        jwt.sign({ user }, 'secretKey', (err, token) => {
                         
-                            res.json({
-                                status: 200,
+                            res.status(201).json({
+                                status: 201,
                                 message: 'User created sucessful!',
                                 data : {
                                     token,
@@ -71,113 +75,93 @@ export default class Users {
                                 
                             });
                         });
-                   } 
+                   //} 
                 //}
            //}
                 
-        };
-      })
+         };
+      }}
+      )
      }
-    
                  
 
-static getusers(req, res, next ){
-                    const user = {
-                        id: users.length + 1,
-                        firstName : req.body.name,
-                        lastName : req.body.userName,
-                        email : req.body.email,
-                        password: req.body.password,
-                        adress: req.body.adress,
-                        biography: req.body.biography,
-                        occupation: req.body.occupation,
-                        expertise: req.body.expertise
-                      };
-                    // jwt.sign({user}, 'secretKey', (err, token) => {
-                                
-                        res.json({
+static getusers(req, res){
+               const user = users.filter(user => user.role === "mentee")
+                        res.status(200).json({
                             status: 200,
-                            data : {
-                                users   
-                            }
-                            
+                            data : user 
                         });
                     // });
                 };
 
         // getting specific user
-static specificuser (req, res, next ){
-    // const id = user.id;
-        const user = users.find(user => user.id === parseInt(req.params.id,10))
+static specificuser (req, res ){
+    
+        const user = users.find(user => user.id === parseInt(req.params.id,10) && (user.role=== "mentee"))
         if(!user) return res.status(404).json({
             status : 404,
-            message: "User with the given ID not found!",
+            message: `User with the given ID = ${req.params.id} not found!`,
             
-        }) 
-        res.json(user);
+        })
+        if(user)
+       return res.status(200).json({user});
         };
 
 
-        // user should be able to sign in
+           // user should be able to sign in
 static userlogin (req, res){
     
- const user = users.find(user => user.email === req.body.email)
-  
-      
-        if(user){
-            bcrypt.compare(req.body.password, user.password, (err, result) => {
-                if(err){
-                    res.json({
-                        message: 'password not mach'
-                    })
-                } 
-                 
-                if(result){
-            const token = jwt.sign({user},'privateKey',(token))  
-                 return res.status(200).json({
-                     status: 200,
-                     message: 'User is successfully logged in',
-                     data: {
-                         token: token
-                     }
-         
-                  })
-               
-               }
-            }) 
-            } else{
-                     res.json({
-                         message:"You are not registed!"
-                     })
-                    
-                    }
-                
- 
+    const user = users.find(user => user.email === req.body.email)
      
-        }
+         
+           if(user){
+               bcrypt.compare(req.body.password, user.password, (err, result) => {
+                   if(err){
+                       
+                       return res.json({
+                           message:"password not match!"
+                       })
+                   } 
+                    
+                   if(result){
+               const token = jwt.sign({user},'privateKey',(token))  
+                    return res.status(200).json({
+                        status: 200,
+                        message: 'User is successfully logged in',
+                        data: {
+                            token: token
+                        }
+                     })
+               }
+            })
+        } else {
+                res.status(422).json({
+                        message:"You are not registed!"
+                        })  
+                 }     
+           }
 
-    
     static getMentors (req, res){
-        res.json({
+       const mentors = users.filter(user => user.role === "mentor")
+        res.status(200).json({
             status: 200,
             data: mentors
             })
            }
           
 
-    static specificMentor (req, res, next ){
-              const mentor =  mentors.find(mentor => mentor.id === parseInt(req.params.id,10))
+    static specificMentor (req, res){
+              const mentor =  users.find(m => m.id === parseInt(req.params.id,10) && (m.role ==="mentor"))
                 if(!mentor) return res.status(404).json({
                     status : 404,
-                    message: "mentor with the given ID not found!",
+                    message: `mentor with the given ID = ${req.params.id} not found!`,
                     
                 }) 
-                res.json({
-                    data:mentor 
+                
+                return res.json({
+                    data: mentor 
                 });
-                }; 
-                
-                
+                };        
             
      } 
                
