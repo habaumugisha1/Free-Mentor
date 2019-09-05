@@ -24,7 +24,7 @@ body{
         background-image: url(../images/mentor6.jpeg);
     }
     50%{
-        background-image: url(../images/mentor7.jpg);
+        background-image: url(../images/mentor1.jpg);
     }
     75%{
         background-image: url(../images/mentor8.jpg);
@@ -40,7 +40,11 @@ body{
   min-height: 40px;
   display: flex;
   background-color: rgba(132, 158, 243, 0.45);
-  
+}
+@media screen and (min-width:200px){
+    .nav {
+        width: 100%
+    }
 }
 .log {
     float: left;
@@ -73,8 +77,7 @@ ul {
     color: white;  
 }
  .nav ul li:hover{
-    /* height: 30px;
-    padding: 20px; */
+    
     border-radius: 10px;
     width: fit-content;
     background-color: rgba(7, 18, 122, 0.75);
@@ -99,7 +102,7 @@ ul {
         margin-top: 250px
     }
     .logcontent {
-        /* min-height: 100px; */
+        
         width: 150px;
         padding: 30px;
         margin-top: 100px;
@@ -148,14 +151,14 @@ ul {
     width: 90px;
     padding:20px;
     border: none;
-    /* margin-left: -130px */
+   
 }
 #me a{
     font-size: 15px;
     margin-top: 10px;
      color:rgb(228, 218, 218);
     
-    /* margin-left: -130px */
+    
 }
 .loging a {
     text-decoration : none;
@@ -174,20 +177,23 @@ ul {
     width: 350px;
     padding: 30px;
     height: 200px;
-    color:rgb(237, 118, 241);
+    color:rgb(22, 43, 238);
     margin-top:150px;
     background-size: cover;
     margin-left: 30px;
 }
 @media screen and (min-width:200px){
     .formimg {
-        margin-top: 10px
+        margin-top: 10px;
+        margin-left:10px;
+        width: 80%;
+        margin-right: 10px
     }
 }
 
 @media (max-width:768px){
     .formimg {
-        width: 300px;
+        width: 280px;
         padding: 30px;
         height: 200px;
         color:rgb(237, 118, 241);
@@ -201,7 +207,7 @@ ul {
             width: 350px;
             padding: 30px;
             height: 250px;
-            color:rgb(237, 118, 241);
+            color:rgb(0, 0, 0);
             margin-top:200px;
             background-size: cover;
             margin-left: 70px;
@@ -214,7 +220,7 @@ ul {
     margin-top: 0px;
     width: 100%;
     min-height: auto;
-    background: rgba(0,0,0,0.3);
+    /* background: rgba(0,0,0,0.3); */
 }
 @media (min-width:200px){
     .outer {
@@ -230,7 +236,7 @@ position: absolute;
 /* display: flexC; */
 transform: translate(-50%, -50%);
 text-align: center;
-color:  rgba(207, 75, 224, 0.75);
+color:  rgba(134, 7, 151, 0.75);
 font-size: 20px;
 left: 50%;
 top: 40%;
@@ -248,10 +254,11 @@ top: 40%;
         position: absolute;
         transform: translate(-50%, -50%);
         text-align: center;
-        color: rgba(230, 72, 132, 0.75);
+        color:#0e1df0;
+        height: fit-content;
         font-size: 23px;
         left: 47%;
-        margin-top: 180px;
+        margin-top: 90px;
     }
 }
 .getstart {
@@ -287,8 +294,9 @@ border: none;
 padding: 5px;
 text-align: center;
 cursor: pointer;
-left: 50%;
+left: 43%;
 margin-top:28%;
+font-size: 25px;
 border-radius: 20px;
 height: 60px;
 width: 150px;
@@ -473,14 +481,14 @@ form button {
     margin-bottom: 30px;
     padding: 30px;
     margin-top: 100px;
-    margin-left: 50%;
+    margin-left: 20%;
     background-color: lightblue;
 
 }
 @media (min-width:200px){
     .logcontent {
         width: 80%;
-        margin-left: 40px;
+        margin-left: 30px;
         font-size: 15px
     }
     .logcontent .loging {
@@ -514,7 +522,7 @@ form button {
     margin-bottom: 30px;
     padding: 30px;
     margin-top: 100px;
-    margin-left: 30%;
+    margin-left: 20%;
     background-color: lightblue;
     }
     .logcontent .loging input {
@@ -531,7 +539,6 @@ form button {
 }
  
 .containerform{
-   /* float: right; */
    margin-left: 20%;
    margin-top: -310px;
    width: 1000px
@@ -539,7 +546,6 @@ form button {
 }
 @media screen and (min-width:200px){
     .containerform{
-        /* float: right; */
         margin-left: auto;
         margin-top: 20px;
         width: 97%
@@ -548,10 +554,9 @@ form button {
 }
 @media screen and (min-width:768px){
     .containerform{
-        /* float: right; */
-        margin-left: 23%;
-        margin-top: -360px;
-        width: 800px
+        margin-left: 35%;
+        margin-top: -370px;
+        width: 500px
      
      }
 }
@@ -579,8 +584,8 @@ form button {
 
 .footer1 {
     padding:20px;
-    left: 0;
-    bottom: 0;
+    left: 0px;
+    bottom: 0px;
     width: 100%;
     float: bottom;
     /* margin-top: 700px;  */
@@ -775,7 +780,7 @@ form button {
 @media only screen and (min-width: 200px) {
     #sidebar {
         float: none;
-        width: 400pxmargin-left: 50px;
+        width: 400px;margin-left: 50px;
     }
     #sidebar ul li a {
         text-align: center;
