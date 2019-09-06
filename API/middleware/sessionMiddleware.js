@@ -13,9 +13,6 @@ export default (req, res, next) => {
     req.userInfo = myData;
     next();
   } else {
-    return Responses.error(res, 'please enter your token in order to access');
-    // res.json({
-    //   message: 'please enter your token in order to access',
-    // });
+    return Responses.error(res, 501, 'please enter your token in order to access');
   }
 };

@@ -1,47 +1,45 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import jwt from 'jsonwebtoken';
 import app from '../index';
+import users from './mocks/userdata';
+
 
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
-// const expect = { chai };
 
-
-// eslint-disable-next-line no-undef
 describe('users', () => {
-  // eslint-disable-next-line no-undef
+  const token = jwt.sign(users.newuser, 'privateKey', (token));
   it('should return home page', (done) => {
     // calling sever as app
     chai.request(app)
       .get('/api/v1/home')
-      .send('Welcome to Free Mentor') // THis is HTTP response
+      .send('Welcome to Free Mentor')
       .end((err, res) => {
-        // HTTP status should be 200
         res.should.have.status(200);
         done();
       });
   });
 
-  // eslint-disable-next-line no-undef
-  it('it should not create user with existing email of user', (done) => {
-    const user = {
-
-      id: 1,
-      firstName: 'kamana',
-      lastName: 'kamanamana',
-      email: 'kamana12@gmail.com',
-      password: '1234567890',
-      adress: 'Rwanda kigali',
-      biography: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      occupation: 'freelancer',
-      expertise: 'BackEnd developer',
-    };
-
+  it('it should create user ', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
-      .send(user)
+      .send(users.newuser)
       .end((err, res) => {
+        res.status.should.have.equal(201);
+        res.body.should.be.a('object');
+
+        done();
+      });
+  });
+
+  it('it should not create user with existing email of user', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(users.newuser)
+      .end((err, res) => {
+      // bad request status
         res.should.have.status(409);
         res.body.should.be.a('object');
 
@@ -49,35 +47,96 @@ describe('users', () => {
       });
   });
 
-  // eslint-disable-next-line no-undef
-  it('should ot create user when user data is not valid', (done) => {
-    const user = {
-      id: 6,
-      email: 'kamana12gmail.com',
-      password: '$2a$10$wp.Mpmu0inbdlzze8HBkVuHH2dy26t6TbWh7BLqMAA5SVWQxSHyIq',
-      adress: 'Rwanda kigali',
-      biography: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      occupation: 'freelancer',
-      role: 'mentee',
-      expertise: 'BackEnd developer',
-    };
+  it('should not create user when user data is not valid', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
+      .send(users.invaliddata)
       .end((err, res) => {
         res.should.have.status(400);
-        // res.body.should.have.property('message');
-        // res.body.should.be.a('object')
+        res.body.should.be.a('object');
         done();
       });
   });
 
-  // eslint-disable-next-line no-undef
   it('should get all users', (done) => {
     chai.request(app)
       .get('/api/v1/auth/users')
-    // .send(users)
       .end((err, res) => {
         res.status.should.be.equal(200);
+        done();
+      });
+  });
+  it('should not change user to mentor if is not found', (done) => {
+    chai.request(app)
+      .patch('/api/v1/auth/users/19')
+      .end((err, res) => {
+        res.status.should.be.equal(404);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
+
+  it('should change user to mentor if user exist', (done) => {
+    chai.request(app)
+      .patch('/api/v1/auth/users/1')
+      .end((err, res) => {
+        res.status.should.be.equal(200);
+
+        done();
+      });
+  });
+  it('user should login', (done) => {
+    chai.request(app)
+      .post('/api/auth/login')
+      .set('authorization', `bearer ${token}`)
+      .send(users.userdata)
+      .end((err, res) => {
+        res.status.should.be.equal(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
+  it('user should not login if email is not exist', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .end((err, res) => {
+        res.status.should.be.equal(422);
+        done();
+      });
+  });
+
+  it('should get mentors', (done) => {
+    chai.request(app)
+      .get('/api/v1/mentors')
+      .set('authorization', `bearer ${token}`)
+      .send(token)
+      .end((err, res) => {
+        res.status.should.be.equal(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+
+  it('should not get specific mentor if ID is not found', (done) => {
+    chai.request(app)
+      .get('/api/v1/mentors/9')
+      .set('authorization', `bearer ${token}`)
+      .end((err, res) => {
+        res.status.should.be.equal(404);
+
+        done();
+      });
+  });
+  it('should get specific mentor', (done) => {
+    chai.request(app)
+      .get('/api/v1/mentors/5')
+      .set('authorization', `bearer ${token}`)
+      .end((err, res) => {
+        res.status.should.be.equal(200);
+        res.body.should.be.a('object');
+
         done();
       });
   });

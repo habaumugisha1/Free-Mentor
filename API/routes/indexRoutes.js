@@ -1,6 +1,4 @@
-/* eslint-disable import/no-named-as-default */
 import express from 'express';
-
 import review from './sessionReviewRoutes';
 import sessionRoutes from './sessionRoutes';
 import userRoutes from './userRoutes';
