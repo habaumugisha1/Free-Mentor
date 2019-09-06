@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import jwt from 'jsonwebtoken';
 
 export default (req, res, next) => {

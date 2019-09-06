@@ -12,7 +12,7 @@ router.get('/home', Users.homeView);
 router.post('/auth/login', Users.userlogin);
 router.post('/auth/signup', emailExist, Users.userSignUp);
 router.get('/auth/users', Users.getusers);
-router.patch('/auth/users/:id', Users.specificuser);
+router.patch('/auth/users/:id', auth, Users.specificuser);
 router.get('/mentors', auth, Users.getMentors);
 router.get('/mentors/:id', mentorId, Users.specificMentor);
 

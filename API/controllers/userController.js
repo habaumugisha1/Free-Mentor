@@ -36,27 +36,30 @@ export default class Users {
         };
 
         users.push(user);
-        
-        const token = jwt.sign(user, 'privateKey', (token));
+        const { password, ...noA } = user;
+        const token = jwt.sign(noA, 'privateKey', (token));
         return Responses.success(res, 201, 'User created sucessful!', token);
       }
     });
   }
-  
+
   static getusers(req, res) {
     const user = users.filter((user) => user.role === 'mentee');
     return Responses.success(res, 200, user);
   }
 
-  
+
   static specificuser(req, res) {
     const user = users.find((user) => user.id === parseInt(req.params.id, 10) && (user.role === 'mentee'));
-    const token = jwt.sign({ user }, 'privateKey', (token));
     if (!user) {
       return Responses.error(res, 404, `User with the given ID = ${req.params.id} not found!`);
     }
-    return Responses.success(res, 200, token, 'User account changed to mentor');
-  }
+    if (user) {
+      const { password, ...noA } = user;
+      const token = jwt.sign(noA, 'privateKey', (token));
+      return Responses.success(res, 200, token, 'User account changed to mentor');
+    }
+ }
 
   // user should be able to sign in
   static userlogin(req, res) {
