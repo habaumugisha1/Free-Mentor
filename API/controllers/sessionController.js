@@ -14,40 +14,9 @@ export default class Sessions {
     };
     sessions.push(session);
     return Responses.success(res, 200, 'session requested successfully!', session);
-    // res.status(200).json({
-    //   message: 'session requested successfully!',
-    //   data: session,
-
-    // });
   }
 
-  // eslint-disable-next-line consistent-return
-  static declineSession(req, res) {
-    // eslint-disable-next-line no-shadow
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line no-shadow
-    // eslint-disable-next-line max-len
-    const session = sessions.find((session) => session.sessionId === parseInt(req.params.sessionId, 10));
-    console.log(session);
-    if (!session) {
-      return Responses.error(res, 404, `session with ID ${req.params.sessionId} you passed is not found!`);
-    }
-
-    const rejected = {
-      sessionId: req.params.sessionId,
-      mentorId: req.body.mentorId,
-      menteeId: req.userInfo.id,
-      questions: req.body.questions,
-      menteeEmail: req.userInfo.email,
-      status: 'rejected',
-    };
-    // eslint-disable-next-line no-console
-    sessions.splice(1, 1, rejected);
-    return Responses.success(res, 200, rejected);
-  }
-
-  // mentor accepting menotorship request session
-  // eslint-disable-next-line consistent-return
+  // mentor accepting menotorship request sessio
   static acceptSession(req, res) {
     const session = sessions.find((s) => s.sessionId === parseInt(req.params.sessionId, 10));
 
@@ -66,9 +35,25 @@ export default class Sessions {
     return Responses.success(res, 200, data);
   }
 
-  // mentor should be able to decline session request mentorship
-  // eslint-disable-next-line consistent-return
+  static declineSession(req, res) {
+    const session = sessions.find((session) => session.sessionId === parseInt(req.params.sessionId, 10));
+    console.log(session);
+    if (!session) {
+      return Responses.error(res, 404, `session with ID ${req.params.sessionId} you passed is not found!`);
+    }
 
+    const rejected = {
+      sessionId: req.params.sessionId,
+      mentorId: req.body.mentorId,
+      menteeId: req.userInfo.id,
+      questions: req.body.questions,
+      menteeEmail: req.userInfo.email,
+      status: 'rejected',
+    };
+
+    sessions.splice(1, 1, rejected);
+    return Responses.success(res, 200, rejected);
+  }
 
   // get sessions
   static getSession(req, res) {

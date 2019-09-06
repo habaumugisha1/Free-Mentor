@@ -11,7 +11,7 @@ export default (req, res, next) => {
 
     next();
   } else {
-    res.json({
+    res.status(401).json({
       message: 'please enter your token in order to access',
     });
   }

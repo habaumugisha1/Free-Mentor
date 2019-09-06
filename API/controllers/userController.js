@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
@@ -6,8 +5,6 @@ import { users } from '../models/data';
 import schema from '../helpers/validation';
 import Responses from '../helpers/response';
 
-
-// import User from '../models/user'
 
 export default class Users {
   static homeView(req, res) {
@@ -17,13 +14,9 @@ export default class Users {
 
   static userSignUp(req, res) {
     const user = users.find((user) => user.email === req.body.email);
-    // eslint-disable-next-line consistent-return
     bcrypt.hash(req.body.password, 10, (err, hash) => {
       if (user) {
         return Responses.success(res, 409, 'Email already registed');
-        // res.status(409).json({
-        //   message: 'Email already registed',
-        // });
       }
       const result = Joi.validate(req.body, schema);
       if (result.error) {
@@ -43,26 +36,21 @@ export default class Users {
         };
 
         users.push(user);
-        // eslint-disable-next-line no-shadow
-        // eslint-disable-next-line no-use-before-define
+        
         const token = jwt.sign(user, 'privateKey', (token));
         return Responses.success(res, 201, 'User created sucessful!', token);
       }
     });
   }
-
-
+  
   static getusers(req, res) {
     const user = users.filter((user) => user.role === 'mentee');
     return Responses.success(res, 200, user);
   }
 
-  // });
-  // change user to mentor
-  // eslint-disable-next-line consistent-return
+  
   static specificuser(req, res) {
     const user = users.find((user) => user.id === parseInt(req.params.id, 10) && (user.role === 'mentee'));
-    // eslint-disable-next-line no-use-before-define
     const token = jwt.sign({ user }, 'privateKey', (token));
     if (!user) {
       return Responses.error(res, 404, `User with the given ID = ${req.params.id} not found!`);
@@ -71,11 +59,9 @@ export default class Users {
   }
 
   // user should be able to sign in
-  // eslint-disable-next-line consistent-return
   static userlogin(req, res) {
     const user = users.find((user) => user.email === req.body.email);
     if (user) {
-      // eslint-disable-next-line consistent-return
       bcrypt.compare(req.body.password, user.password, (err, result) => {
         if (err) {
           return Responses.error(res, 'password not match!');
@@ -84,7 +70,6 @@ export default class Users {
         if (result) {
           // destructuring objectt
           const { password, ...noA } = user;
-          // eslint-disable-next-line no-use-before-define
           const token = jwt.sign(noA, 'privateKey', (token));
           return Responses.success(res, 200, 'User is successfully logged in', token);
         }
