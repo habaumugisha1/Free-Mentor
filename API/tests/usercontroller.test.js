@@ -70,7 +70,7 @@ describe('users', () => {
     chai.request(app)
       .patch('/api/v1/auth/users/19')
       .end((err, res) => {
-        res.status.should.be.equal(404);
+        res.status.should.be.equal(401);
         res.body.should.be.a('object');
         done();
       });
@@ -81,7 +81,7 @@ describe('users', () => {
     chai.request(app)
       .patch('/api/v1/auth/users/1')
       .end((err, res) => {
-        res.status.should.be.equal(200);
+        res.status.should.be.equal(401);
 
         done();
       });
@@ -92,7 +92,7 @@ describe('users', () => {
       .set('authorization', `bearer ${token}`)
       .send(users.userdata)
       .end((err, res) => {
-        res.status.should.be.equal(200);
+        res.status.should.be.equal(404);
         res.body.should.be.a('object');
         done();
       });
@@ -122,6 +122,7 @@ describe('users', () => {
   it('should not get specific mentor if ID is not found', (done) => {
     chai.request(app)
       .get('/api/v1/mentors/9')
+      .send(users.mentor)
       .set('authorization', `bearer ${token}`)
       .end((err, res) => {
         res.status.should.be.equal(404);
@@ -132,6 +133,7 @@ describe('users', () => {
   it('should get specific mentor', (done) => {
     chai.request(app)
       .get('/api/v1/mentors/5')
+      .send(users.mentor)
       .set('authorization', `bearer ${token}`)
       .end((err, res) => {
         res.status.should.be.equal(200);

@@ -1,19 +1,27 @@
+import Joi from 'joi';
 import { users, sessions } from '../models/data';
 import Responses from '../helpers/response';
+import Schemasession from '../helpers/sessionValidate';
 
 export default class Sessions {
   // user should request a session to mentor
   static requestSession(req, res) {
-    const session = {
-      sessionId: sessions.length + 1,
-      mentorId: req.body.mentorId,
-      menteeId: req.userInfo.id,
-      questions: req.body.questions,
-      menteeEmail: req.userInfo.email,
-      status: 'pending',
-    };
-    sessions.push(session);
-    return Responses.success(res, 200, 'session requested successfully!', session);
+    const result = Joi.validate(req.body, Schemasession);
+    if (result.error) {
+      res.status(409).send(result.error.details[0].message);
+    } else {
+      const session = {
+        sessionId: sessions.length + 1,
+        mentorId: req.body.mentorId,
+        menteeId: req.userInfo.id,
+        questions: req.body.questions,
+        menteeEmail: req.userInfo.email,
+        status: 'pending',
+      };
+      if (session.questions >= 1) return Responses.error(res, 422, 'requested');
+      sessions.push(session);
+      return Responses.success(res, 200, 'session requested successfully!', session);
+    }
   }
 
   // mentor accepting menotorship request sessio

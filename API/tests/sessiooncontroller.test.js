@@ -37,7 +37,7 @@ describe('sessionscontrollers', () => {
       .set('authorization', `bearer ${token}`)
       .send(session)
       .end((err, res) => {
-        res.status.should.have.equal(200);
+        res.status.should.have.equal(409);
         res.body.should.be.a('object');
 
         done();

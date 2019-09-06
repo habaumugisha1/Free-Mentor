@@ -20,19 +20,45 @@ https://travis-ci.com/habaumugisha1/Free-Mentor
 .nodejs Framework
 
 ### features
-Code Example: 
-const mentor = users.find((m) => m.id === parseInt(req.params.id, 10) && (m.role === 'mentor'));
-if (!mentor) {
-return res.status(404).json({
-status: 404,
-message: `mentor with the given ID = ${req.params.id} not found!`,
-
-  });
-}
+create account:
+```
+POST :api/v1/auth/signup
+```
+login:
+```
+POST :api/v1/auth/sign in
+```
+Change a user to a mentor:
+```
+PATCH api/v1/user/:userId
+```
+Get all mentors:
+```
+GET api/v1/mentors
+```
+Get a specific mentor:
+```
+GET api/v1/mentors/:mentorId
+```
+Create a mentorship session request:
+```
+POST api/v1/sessions
+```
+A mentor can accept a mentorship session request:
+```
+POST api/v1/sessions
+```
+A mentor can reject a mentorship session request.
+```
+PATCH api/v1/sessions/:sessionId/reject
+```
 
 ### Installation
-installing nodejs using this link : https://nodejs.org
-and folowthe intractions is really simple fun thing
+
+and folowthe intractions is really simple fun thing.
+First download node.js  link : https://nodejs.org and installing nodejs according to OS you are using manily : npm install pakage name
+### lincese
+MTI
 ### Credits
 https://github.com/habaumugisha1/Free-Mentor
 #### Questions: #167833323
