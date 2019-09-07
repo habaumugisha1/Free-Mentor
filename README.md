@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/habaumugisha1/Free-Mentor.svg?branch=develop)](https://travis-ci.com/habaumugisha1/Free-Mentor)  [![Coverage Status](https://coveralls.io/repos/github/habaumugisha1/Free-Mentor/badge.svg)](https://coveralls.io/github/habaumugisha1/Free-Mentor)
+[![Build Status](https://travis-ci.com/habaumugisha1/Free-Mentor.svg?branch=develop)](https://travis-ci.com/habaumugisha1/Free-Mentor)  [![Coverage Status](https://coveralls.io/repos/github/habaumugisha1/Free-Mentor/badge.svg?branch=develop)](https://coveralls.io/github/habaumugisha1/Free-Mentor?branch=develop)[![Coverage Status](https://coveralls.io/repos/github/habaumugisha1/Free-Mentor/badge.svg?branch=develop)](https://coveralls.io/github/habaumugisha1/Free-Mentor?branch=develop)
 
 # Free-Mentor
   Free Mentors is a social initiative where accomplished professionals become role models to
